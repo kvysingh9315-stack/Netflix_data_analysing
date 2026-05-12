@@ -39,8 +39,7 @@ This project focuses on analyzing the Netflix dataset to uncover insights about 
 
 ---
 
-## 📷 Sample Output
-(Add your graph screenshots here)
+
 
 ---
 
