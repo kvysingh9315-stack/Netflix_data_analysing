@@ -1,9 +1,13 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-d=pd.read_csv("netflix_titles.csv")
-d.dropna(subset=['show_id','type','title','director','cast','country','date_added','release_year','rating','duration','listed_in','description'],inplace=True)
-type_count = d['type'].value_counts()
+df=pd.read_csv("netflix_titles.csv")
+
+type_df = df.dropna(subset=['type'])        
+country_df = df.dropna(subset=['country'])  
+genre_df = df.dropna(subset=['listed_in'])
+year_df = df.dropna(subset=['release_year'])
+type_count = type_df['type'].value_counts()
 
 plt.figure(figsize=(15,5))
 
@@ -15,7 +19,7 @@ plt.ylabel("Count")
 plt.grid(True)
 
 
-country=d['country'].value_counts().head(5)
+country=country_df['country'].value_counts().head(5)
 
 plt.subplot(1,4,2)
 plt.pie(country,labels=country.index,autopct="%1.1f%%")
@@ -23,17 +27,19 @@ plt.title("Top 5 countries with most content")
 
 
 
-genres=d['listed_in'].str.split(', ')
+
+genres=genre_df['listed_in'].str.split(', ')
 genres=genres.explode()
 genres_count=genres.value_counts()
 plt.subplot(1,4,3)
 plt.bar(genres_count.index[:10], genres_count.values[:10])
-plt.xlabel("Number of shows per genre")
-plt.ylabel("Genres")
+plt.xlabel("Genres")
+plt.title("Top 10 genres on netflix")
+plt.ylabel("Number of shows")
 plt.xticks(rotation=45)
 plt.grid(True)
 
-release=d['release_year'].value_counts().sort_index()
+release=year_df['release_year'].value_counts().sort_index()
 
 plt.subplot(1,4,4)
 plt.plot(release.index,release.values)
