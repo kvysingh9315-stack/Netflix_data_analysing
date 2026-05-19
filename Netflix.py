@@ -7,6 +7,8 @@ type_df = df.dropna(subset=['type'])
 country_df = df.dropna(subset=['country'])  
 genre_df = df.dropna(subset=['listed_in'])
 year_df = df.dropna(subset=['release_year'])
+
+
 type_count = type_df['type'].value_counts()
 
 plt.figure(figsize=(15,5))
