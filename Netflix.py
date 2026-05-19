@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df=pd.read_csv("netflix_titles.csv")
+df=pd.read_csv("netflix_titles.csv.zip")
 
 type_df = df.dropna(subset=['type'])        
 country_df = df.dropna(subset=['country'])  
